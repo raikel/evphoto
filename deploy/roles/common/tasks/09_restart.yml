@@ -16,19 +16,3 @@
     enabled: yes
   become: yes
 
-- name: restart celery
-  service:
-    name: '{{celery_name}}'
-    state: restarted
-    enabled: yes
-  become: yes
-  when: celery_enable
-
-- name: restart celerybeat
-  service:
-    name: '{{celerybeat_name}}'
-    state: restarted
-    enabled: yes
-  become: yes
-  when: celery_enable
-
