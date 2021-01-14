@@ -54,7 +54,9 @@ Access the application at `http://localhost:8000`.
 REST API
 ========
 
-The base url of the REST API is `http://localhost:8000/api`
+The base url of the REST API is `http://localhost:8000/api`. The API documentation can 
+be accessed at `http://localhost:8000/api/docs/swagger/` (in swagger format) or
+at `http://localhost:8000/api/docs/redoc/` (in redoc format)
 
 Admin interface
 ========
