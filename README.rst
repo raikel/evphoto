@@ -4,8 +4,12 @@
       <h1>EvPhoto</h1>
     </div>
 
-|Python Version| |Contributions Welcome| |License|
+|Build Status| |Test Coverage| |Python Version| |Contributions Welcome| |License|
 
+.. |Build Status| image:: https://travis-ci.com/raikel/evphoto.svg?branch=main
+   :target: https://travis-ci.com/github/raikel/evphoto
+.. |Test Coverage| image:: https://codecov.io/gh/raikel/evphoto/branch/main/graph/badge.svg
+   :target: https://codecov.io/gh/raikel/evphoto
 .. |Python Version| image:: https://img.shields.io/badge/python-v3.7+-blue.svg
    :target: http://shields.io/
 .. |Contributions Welcome| image:: https://img.shields.io/badge/contributions-welcome-orange.svg
