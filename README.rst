@@ -54,9 +54,9 @@ Access the application at `http://localhost:8000`.
 REST API
 ========
 
-The base url of the REST API is `http://localhost:8000/api`. The API documentation can 
-be accessed at `http://localhost:8000/api/docs/swagger/` (in swagger format) or
-at `http://localhost:8000/api/docs/redoc/` (in redoc format)
+The base url of the REST API is ``http://localhost:8000/api``. The API documentation can 
+be accessed at ``http://localhost:8000/api/docs/swagger/`` (in swagger format) or
+at ``http://localhost:8000/api/docs/redoc/`` (in redoc format)
 
 Admin interface
 ========
@@ -67,7 +67,7 @@ To access the admin interface, you must create first ad admin user with:
 
     python manage.py createsuperuser
     
-Then you can access the admin interface at `http://localhost:8000/admin`
+Then you can access the admin interface at ``http://localhost:8000/admin``
 
 Deployment
 ==========
@@ -80,10 +80,10 @@ sudo apt install ansible
 ```
     
 Next cd into the deploy directory on the project root and copy the 
-template configuration file in `group_vars/all_.yml` to 
-`group_vars/all.yml`. Next, make the necessary changes to this file
+template configuration file in ``group_vars/all_.yml`` to 
+``group_vars/all.yml``. Next, make the necessary changes to this file
 to define your required deployment options. You must define all the 
-variables with a default value enclosed by `<>`.
+variables with a default value enclosed by ``<>``.
 
 ```bash
 cp group_vars/all_.yml group_vars/all.yml
