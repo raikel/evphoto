@@ -22,15 +22,29 @@ class Photo(TimeTrack):
         (SIDE_CENTER, 'Center'),
     ]
 
-    session = models.CharField(max_length=255)
+    session = models.CharField(
+        max_length=255,
+        help_text='The user session ID'
+    )
 
-    side = models.CharField(choices=SIDE_CHOICES, max_length=16)
+    side = models.CharField(
+        choices=SIDE_CHOICES,
+        max_length=16,
+        help_text='The side the photo was taken'
+    )
 
-    temperature = models.FloatField()
+    temperature = models.FloatField(
+        help_text='The estimated center temperature'
+    )
 
-    error = models.BooleanField(default=False)
+    error = models.BooleanField(
+        default=False,
+        help_text='Whether an error occurred or not during photo acquisition'
+    )
 
-    image = models.ImageField()
+    image = models.ImageField(
+        help_text='The acquired image'
+    )
 
     def __str__(self):
         return self.session
