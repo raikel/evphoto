@@ -12,6 +12,7 @@
     - python3-virtualenv
     - python3-psycopg2 # Required for manage postgres
     - acl # Access control list, required from grant some permissions
+    - libgl1-mesa-dev # Required by opencv in headless
   become: yes
 
 - name: Create app directory
