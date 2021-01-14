@@ -74,10 +74,11 @@ Deployment
 
 To deploy in production, first install Ansible in your system. 
 
-```bash
-sudo apt install python3-wheel python3-pip python3-apt
-sudo apt install ansible
-```
+.. code-block:: bash
+
+    sudo apt install python3-wheel python3-pip python3-apt
+    sudo apt install ansible
+
     
 Next cd into the deploy directory on the project root and copy the 
 template configuration file in ``group_vars/all_.yml`` to 
@@ -85,12 +86,13 @@ template configuration file in ``group_vars/all_.yml`` to
 to define your required deployment options. You must define all the 
 variables with a default value enclosed by ``<>``.
 
-```bash
-cp group_vars/all_.yml group_vars/all.yml
-nano group_vars/all.yml # Edit required variables here
-```
+.. code-block:: bash
+
+    cp group_vars/all_.yml group_vars/all.yml
+    nano group_vars/all.yml # Edit required variables here
 
 Finally, deploy the project with
-```bash
-bash deploy.sh
-```
+
+.. code-block:: bash
+
+    bash deploy.sh
