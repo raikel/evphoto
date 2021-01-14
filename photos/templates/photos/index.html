@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Photo Test</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <style>
+    * {
+      font-family:'Roboto',sans-serif;
+      text-decoration: none;
+    }
+    .loader {
+      border: 12px solid #f3f3f3;
+      border-top: 12px solid #0cf;
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      margin-bottom: 32px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #app {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img {
+      height: 100%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .button {
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: .75rem 1.25rem;
+      border-radius: 10rem;
+      color: #fff;
+      text-transform: uppercase;
+      font-size: 1rem;
+      letter-spacing: .15rem;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .button:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #0cf;
+      border-radius: 10rem;
+      z-index: -2;
+    }
+    .button:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: #ccf;
+      transition: all .3s;
+      border-radius: 10rem;
+      z-index: -1;
+    }
+    .button:hover {
+      color: #fff;
+    }
+    .button:hover:before {
+       width: 100%;
+    }
+}
+  </style>
+</head>
+<body>
+  {% verbatim %}
+  <div id="app">
+    <div class="container" v-if="error">
+      <div style="text-align: center">
+        <div>Ha ocurrido un error, por favor haga click en el botón "Capturar" para reintentar.</div>
+        <a href="#" class="button" @click="takePhoto">CAPTURAR</a>
+      </div>
+    </div>
+    <div class="container" v-else>
+      <img v-if="imageUrl" :src="imageUrl" alt="">
+      <div v-else>
+        <div class="loader"></div>
+        <div>Capturando imagen ...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function choose(choices) {
+      var index = Math.floor(Math.random() * choices.length);
+      return choices[index];
+    }
+
+    var apiUrl = 'http://localhost:8000/api';
+    var app = new Vue({
+      el: '#app',
+      data: {
+        imageUrl: '',
+        error: false
+      },
+      created() {
+        this.takePhoto();
+      },
+      methods: {
+        takePhoto() {
+          this.error = false;
+          var self = this;
+          axios.post(apiUrl + '/photos/', {
+            session: Math.random().toString(36),
+            side: choose(['left', 'right', 'center'])
+          })
+          .then(function (response) {
+            self.imageUrl = response.data.image;
+          })
+          .catch(function (error) {
+            self.error = true;
+            console.log(error);
+          });
+        }
+      }
+    })
+  </script>
+  {% endverbatim %}
+</body>
+</html>

@@ -1,0 +1,36 @@
+##
+# Set up Gunicorn
+##
+- name: Create log directory
+  file:
+    path: '{{ gunicorn_log_dir }}'
+    state: directory
+    owner: '{{ deployer_user }}'
+    group: '{{ deployer_group }}'
+  become: yes
+
+- name: Create the gunicorn socket
+  template:
+    src: gunicorn.socket
+    dest: '/etc/systemd/system/{{ gunicorn_name }}.socket'
+  become: yes
+
+- name: Create the gunicorn service
+  template:
+    src: gunicorn.service
+    dest: '/etc/systemd/system/{{ gunicorn_name }}.service'
+  become: yes
+
+- name: Start and enable socket
+  service:
+    name: '{{ gunicorn_name }}.socket'
+    enabled: yes
+    state: started
+  become: yes
+
+- name: Start and enable gunicorn
+  service:
+    name: '{{ gunicorn_name }}.service'
+    enabled: yes
+    state: started
+  become: yes

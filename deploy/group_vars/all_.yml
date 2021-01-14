@@ -1,0 +1,65 @@
+# App Name
+app_name: evphoto
+
+# Deployer User and Groups
+deployer_user: <your-user-name>
+deployer_group: <your-user-group>
+
+# Github Code's Repo URL
+api_repo_url: https://github.com/raikel/evphoto
+
+# App Directory
+app_dir: '/home/{{ deployer_user }}/{{app_name}}'
+app_api_dir: '{{app_dir}}/watbioz-api'
+env_file: '{{ app_dir }}/.env.prod'
+
+# DB Configuration
+db_name: '{{ app_name }}'
+db_user: '{{ app_name }}'
+db_host: localhost
+db_password: <your-db-password>
+
+# Application Dependencies Setup
+venv_root: '/home/{{ deployer_user }}/envs'
+venv_dir: '{{ venv_root }}/{{ app_name }}'
+python_bin: '{{ venv_dir }}/bin/python'
+gunicorn_bin: '{{ venv_dir }}/bin/gunicorn'
+
+# Django admin user
+api_admin_user: '{{ deployer_user }}'
+api_admin_password: <your-admin-password>
+api_admin_email: <your-admin-email>
+
+# Logging
+api_log_file: '{{ app_api_dir }}/{{ app_name }}.log'
+logrotate_file: '/etc/logrotate.d/{{ app_name }}'
+
+###############################################################################
+# Gunicorn
+###############################################################################
+gunicorn_workers: 1
+gunicorn_name: 'gunicorn-{{ app_name }}'
+gunicorn_log_dir: '/var/log/gunicorn'
+gunicorn_log_file: '{{ gunicorn_log_dir }}/{{ app_name }}.log'
+
+###############################################################################
+# Nginx
+###############################################################################
+server_name: <your-server-name>
+secret_key: <your-secret-key>
+
+###############################################################################
+# Control variables
+###############################################################################
+
+# Configure nginx
+config_nginx: true
+
+#-------------------------------------------------------------------------------
+# Caution with this!!!!!!!
+#-------------------------------------------------------------------------------
+# If set to True, the database will be dropped
+db_drop: false
+
+
+

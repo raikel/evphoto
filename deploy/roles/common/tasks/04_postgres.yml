@@ -1,0 +1,44 @@
+##
+# Set up and configure postgres
+##
+- name: Install and configure db
+  become: yes
+  apt:
+    state: latest
+    name:
+      - libpq-dev
+      - postgresql
+      - postgresql-contrib
+
+- name: Start and enable postgres
+  service: name=postgresql enabled=yes state=started
+  become: yes
+
+- name: Drop database confirm
+  pause:
+    prompt: 'Are you sure you want to DROP the project database "{{ db_name }}"? This action is IRREVERSIBLE. Press Ctrl+C to terminate if you are not sure of this'
+  when: db_drop
+
+- name: Drop database
+  postgresql_db:
+    name: '{{ db_name }}'
+    state: absent
+  become_user: postgres
+  become: yes
+  when: db_drop
+
+- name: Create database
+  postgresql_db:
+    name: '{{ db_name }}'
+  become_user: postgres
+  become: yes
+
+- name: Configure a new postgresql user
+  postgresql_user:
+    db: '{{ db_name }}'
+    name: '{{ db_user }}'
+    password: '{{ db_password }}'
+    priv: ALL
+    role_attr_flags: NOSUPERUSER
+  become: yes
+  become_user: postgres

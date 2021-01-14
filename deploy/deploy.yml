@@ -1,0 +1,9 @@
+##
+# This playbook deploys the whole app stack
+##
+- name: apply common configuration to server
+  hosts: localhost
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - common

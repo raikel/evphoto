@@ -1,0 +1,34 @@
+##
+# Restart gunicorn and nginx
+##
+
+- name: restart gunicorn
+  service:
+    name: '{{ gunicorn_name }}.service'
+    state: restarted
+    enabled: yes
+  become: yes
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+    enabled: yes
+  become: yes
+
+- name: restart celery
+  service:
+    name: '{{celery_name}}'
+    state: restarted
+    enabled: yes
+  become: yes
+  when: celery_enable
+
+- name: restart celerybeat
+  service:
+    name: '{{celerybeat_name}}'
+    state: restarted
+    enabled: yes
+  become: yes
+  when: celery_enable
+

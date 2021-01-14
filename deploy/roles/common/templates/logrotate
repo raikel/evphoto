@@ -1,0 +1,29 @@
+{{ api_log_file }} {
+    # Rotate log files set under this user and group instead of using default
+    # user/group (usually root)
+    su {{ deployer_user }} {{ deployer_user }}
+
+    # Rotate once every day
+    daily
+
+    # Archive old versions of log files adding a date extension like YYYYMMDD
+    dateext
+
+    # Use yesterday's instead of today's date to create the dateext
+    dateyesterday
+
+    # Keep a history of 5 rotations
+    rotate 5
+
+    # Immediately after rotation the log file is created
+    create
+
+    #  Do not rotate the log if it is empty
+    notifempty
+
+    # Skip this block without error if no files match the pattern
+    missingok
+
+    # Compress rotated logs
+    # compress
+}

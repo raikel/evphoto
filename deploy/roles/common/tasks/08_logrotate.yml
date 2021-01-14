@@ -1,0 +1,8 @@
+##
+# Log rotate config
+##
+- name: Create the logrotate service file
+  template:
+    src: logrotate
+    dest: '{{ logrotate_file }}'
+  become: yes

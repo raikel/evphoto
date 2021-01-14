@@ -1,0 +1,29 @@
+##
+# Run db migrations and get all static files
+##
+- name: Make migrations
+  shell:
+    cmd: 'set -a; . {{ env_file }}; set +a; {{ python_bin }} manage.py makemigrations --noinput'
+    chdir: '{{ app_api_dir }}'
+
+- name: Migrate database
+  shell:
+    cmd: 'set -a; . {{ env_file }}; set +a; {{ python_bin }} manage.py migrate --noinput'
+    chdir: '{{ app_api_dir }}'
+
+- name: Create admin account (optional)
+  shell:
+    cmd: >
+      set -a; . {{ env_file }}; set +a;
+      {{ python_bin }} manage.py createadmin
+      {{ api_admin_user }} {{ api_admin_password }} {{ api_admin_email }}
+    chdir: '{{ app_api_dir }}'
+  when:
+    - api_admin_user is defined
+    - api_admin_password is defined
+    - api_admin_email is defined
+
+- name: Get all static files
+  shell:
+    cmd: 'set -a; . {{ env_file }}; set +a; {{ python_bin }} manage.py collectstatic --noinput --clear'
+    chdir: '{{ app_api_dir }}'
