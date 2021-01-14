@@ -30,7 +30,7 @@ api_admin_password: <your-admin-password>
 api_admin_email: <your-admin-email>
 
 # Logging
-api_log_file: '{{ app_api_dir }}/{{ app_name }}.log'
+api_log_file: '{{ app_dir }}/{{ app_name }}.log'
 logrotate_file: '/etc/logrotate.d/{{ app_name }}'
 
 ###############################################################################
