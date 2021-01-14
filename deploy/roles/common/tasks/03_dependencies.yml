@@ -9,5 +9,5 @@
 
 - name: Install dependencies
   pip:
-    requirements: '{{ app_api_dir }}/requirements.txt'
+    requirements: '{{ app_dir }}/requirements.txt'
     virtualenv: '{{ venv_dir }}'

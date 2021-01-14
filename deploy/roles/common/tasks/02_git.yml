@@ -10,5 +10,5 @@
 - name: Clone or pull the latest watbioz-api code
   git:
     repo: '{{ api_repo_url }}'
-    dest: '{{ app_api_dir }}'
+    dest: '{{ app_dir }}'
     force: yes

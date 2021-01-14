@@ -10,7 +10,6 @@ api_repo_url: https://github.com/raikel/evphoto
 
 # App Directory
 app_dir: '/home/{{ deployer_user }}/{{app_name}}'
-app_api_dir: '{{app_dir}}/watbioz-api'
 env_file: '{{ app_dir }}/.env.prod'
 
 # DB Configuration

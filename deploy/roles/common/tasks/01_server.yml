@@ -19,11 +19,6 @@
     path: '{{ app_dir }}'
     state: directory
 
-- name: Create app api directory
-  file:
-    path: '{{ app_api_dir }}'
-    state: directory
-
 - name: Create venv directory
   file:
     path: '{{ venv_root }}'
