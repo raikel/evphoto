@@ -131,7 +131,7 @@
         takePhoto() {
           this.error = false;
           var self = this;
-          axios.post(apiUrl + '/photos/', {
+          axios.post('/api/photos/', {
             session: Math.random().toString(36),
             side: choose(['left', 'right', 'center'])
           })
