@@ -7,7 +7,7 @@
     state: latest
   become: yes
 
-- name: Clone or pull the latest watbioz-api code
+- name: Clone or pull the latest app code
   git:
     repo: '{{ api_repo_url }}'
     dest: '{{ app_dir }}'

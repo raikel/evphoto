@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from .apidoc import swagger_view, redoc_view
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='photos/index.html')),
@@ -27,4 +28,10 @@ urlpatterns = [
     static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +
     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 )
+
+if settings.API_DOCS:
+    urlpatterns.extend([
+        path('api/docs/swagger/', swagger_view, name='docs-swagger'),
+        path('api/docs/redoc/', redoc_view, name='docs-redoc'),
+    ])
 

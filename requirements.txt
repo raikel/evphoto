@@ -8,3 +8,4 @@ requests~=2.23.0
 pytest~=6.1.2
 opencv-python
 numpy~=1.18.5
+drf_yasg

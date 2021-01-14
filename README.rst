@@ -19,6 +19,7 @@ Capture an image and display it to a web page.
 
 Installation
 ============
+Note: The following installations instructions have been tested only in Ubuntu 20.04
 
 Before you are ready to run EvPhoto, ensure you have ``Python 3.7`` or later on your system as well the latest pip version. We recommend to run EvPhoto within a python virtual environment for easier management. If you don't have a virtual environment already created, create a new one by issuing the following commands within a directory of your choice:
 
@@ -50,7 +51,12 @@ Next, create database migrations and start the local server:
     
 Access the application at `http://localhost:8000`.
 
-Optional
+REST API
+========
+
+The base url of the REST API is `http://localhost:8000/api`
+
+Admin interface
 ========
 
 To access the admin interface, you must create first ad admin user with:
@@ -59,4 +65,30 @@ To access the admin interface, you must create first ad admin user with:
 
     python manage.py createsuperuser
     
-Then you can acces the admin interface at `http://localhost:8000/admin`
+Then you can access the admin interface at `http://localhost:8000/admin`
+
+Deployment
+==========
+
+To deploy in production, first install Ansible in your system. 
+
+```bash
+sudo apt install python3-wheel python3-pip python3-apt
+sudo apt install ansible
+```
+    
+Next cd into the deploy directory on the project root and copy the 
+template configuration file in `group_vars/all_.yml` to 
+`group_vars/all.yml`. Next, make the necessary changes to this file
+to define your required deployment options. You must define all the 
+variables with a default value enclosed by `<>`.
+
+```bash
+cp group_vars/all_.yml group_vars/all.yml
+nano group_vars/all.yml # Edit required variables here
+```
+
+Finally, deploy the project with
+```bash
+bash deploy.sh
+```
