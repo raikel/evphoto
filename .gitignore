@@ -69,4 +69,5 @@ venv.bak/
 # Other files and directories
 recycle/
 gitpush.sh
+clean.sh
 

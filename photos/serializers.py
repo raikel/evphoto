@@ -55,6 +55,7 @@ class PhotoSerializer(BaseSerializer):
         fields = BaseSerializer.Meta.fields + (
             'session',
             'side',
+            'colormap',
             'temperature',
             'error',
             'image',
@@ -63,5 +64,6 @@ class PhotoSerializer(BaseSerializer):
         extra_kwargs = {
             'temperature': {'read_only': True},
             'error': {'read_only': True},
-            'image': {'read_only': True}
+            'image': {'read_only': True},
+            'colormap': {'required': False}
         }

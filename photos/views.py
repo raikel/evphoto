@@ -21,7 +21,8 @@ class PhotoView(viewsets.GenericViewSet):
             context=serializer_context
         )
         serializer.is_valid(raise_exception=True)
-        image_name, temperature, error = take_photo()
+        colormap = serializer.data.get('colormap', Photo.COLORMAP_NONE)
+        image_name, temperature, error = take_photo(colormap)
 
         photo = Photo.objects.create(
             session=serializer.data['session'],
@@ -29,6 +30,7 @@ class PhotoView(viewsets.GenericViewSet):
             temperature=temperature,
             error=error,
             image=image_name,
+            colormap=colormap
         )
 
         serializer = self.serializer_class(
